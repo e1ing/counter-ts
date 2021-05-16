@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Box, Button} from '@material-ui/core';
 import {InputElement} from "./InputElement";
+import {Save} from "@material-ui/icons";
+
 
 
 export type SettingsType = {
@@ -30,7 +32,11 @@ export const Settings = (props: SettingsType) => (
             />
         </Box>
         <Box>
-            <Button variant='contained'
+            <Button
+                startIcon={<Save/>}
+                size={"large"}
+                variant='contained'
+                color={'secondary'}
                     onClick={props.setDisplayValue}
                     className="button-style"
                    disabled={props.errorState}>

@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {Input} from '@material-ui/core';
+import {Input, TextField} from '@material-ui/core';
 import {InputProps} from "@material-ui/core/Input/Input";
 
 export type InputElementType={
@@ -12,8 +12,11 @@ export function InputElement({value, changeValue, ...restProps}: InputElementTyp
         changeValue(+e.currentTarget.value)
     }
 
-    return <Input type="number"
+    return <Input  type="number"
+
                   value={value}
                   color={'primary'}
-                  onChange={onValueChangeHandler} {...restProps}/>
+                  onChange={onValueChangeHandler} {...restProps}
+
+    />
 }

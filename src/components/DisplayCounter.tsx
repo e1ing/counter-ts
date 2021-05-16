@@ -27,13 +27,19 @@ export function DisplayCounter(props: DisplayCounterType) {
                     ? props.error : props.counter}
             </Box>
             <Box className="buttons-block">
-                <Button variant='contained'
+                <Button style={{margin: "10px"}}
+                    variant='contained'
+                        size={'large'}
+                        color={"primary"}
                         className="button-style"
                         disabled={props.counter === props.maxValue}
                         onClick={props.increaseValue}>
                     INC
                 </Button>
-                <Button variant='contained'
+                <Button style={{margin: "10px"}}
+                    variant='contained'
+                    color={"primary"}
+                    size={'large'}
                         onClick={props.resetValue}
                         className="button-style">
                     RESET

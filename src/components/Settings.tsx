@@ -33,7 +33,7 @@ export const Settings = (props: SettingsType) => (
             <Button variant='contained'
                     onClick={props.setDisplayValue}
                     className="button-style"
-                    disabled={props.errorState}>
+                   disabled={props.errorState}>
                 SET
             </Button>
         </Box>

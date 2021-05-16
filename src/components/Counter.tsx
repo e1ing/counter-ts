@@ -16,9 +16,8 @@ export function Counter() {
     const resetValue = () => setCountValue(0);
 
     const setDisplayValue = () => {
-        setError ("")
-        setErrorState(false)
-            setCountValue(minValue)
+        setError(" ")
+        setCountValue(minValue)
     }
 
     const setMinValueCallback = (val: number) => {
@@ -31,20 +30,44 @@ export function Counter() {
     }
 
     const errorCase = () => {
-        if (maxValue === minValue) {setError("incorrect value"); setErrorState(true)}
-        else if (minValue < 0) {setError("incorrect value"); setErrorState(true)}
-        else if  (maxValue < 0) {setError("incorrect value"); setErrorState(true)}
-        else if  (maxValue<minValue) {setError("incorrect value"); setErrorState(true)}
-        else {
-            setError("enter value and press set")
+        if (maxValue === minValue) {
+            setError("incorrect value");
             setErrorState(true)
+        } else if (minValue < 0) {
+            setError("incorrect value");
+            setErrorState(true)
+        } else if (maxValue < 0) {
+            setError("incorrect value");
+            setErrorState(true)
+        } else if (maxValue < minValue) {
+            setError("incorrect value");
+            setErrorState(true)
+        } else {
+            setError("enter value and press set")
+            setErrorState(false)
         }
     }
 
 
-/*useEffect (() => {
-localStorage.setItem()
-})*/
+    useEffect(() => {
+        let maxAsString = localStorage.getItem('maxKey')
+        if (maxAsString) {
+            setMaxValue(JSON.parse(maxAsString))
+        }
+        let minAsString = localStorage.getItem('minKey')
+        if (minAsString) {
+            setMinValue(JSON.parse(minAsString))
+
+        }
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('maxKey', JSON.stringify(maxValue))
+        localStorage.setItem('minKey', JSON.stringify(minValue))
+        errorCase()
+    }, [maxValue, minValue])
+
 
     return (
         <Box className="body">
@@ -66,6 +89,7 @@ localStorage.setItem()
                 errorCase={errorCase}
                 error={error}
                 errorState={errorState}
+
             />
         </Box>
     )

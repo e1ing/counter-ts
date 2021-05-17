@@ -73,11 +73,11 @@ export function Counter() {
         <Container fixed>
 
             <Grid container  spacing={3} style={{padding: "30px 0px"}}
-                  direction="row"
+                  /*direction="row"*/
                   justify="center"
                   alignItems="center">
 
-                <Paper >
+                <Paper style={{margin: 20 }}  elevation={3} >
                     <Settings
                         minValue={minValue}
                         maxValue={maxValue}
@@ -87,7 +87,7 @@ export function Counter() {
                         errorState={errorState}/>
                 </Paper>
 
-                    <Paper >
+                    <Paper style={{margin: 20 }}  elevation={3}>
                         <DisplayCounter
                             increaseValue={increaseValue}
                             resetValue={resetValue}

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Box, Button} from '@material-ui/core';
+import {Box, Button, InputLabel} from '@material-ui/core';
 
 
 export type DisplayCounterType = {
@@ -14,18 +14,21 @@ export type DisplayCounterType = {
 }
 
 export function DisplayCounter(props: DisplayCounterType) {
-    // let isDisabled = (props.error===" " ? true : false)
+     let isDisabled =props.error === "incorrect value" ||
+     props.error === "enter value and press set" ||
+     props.counter===props.maxValue
+
     return (
         <Box>
-            <Box className={props.error === "incorrect value" ||
-            props.error === "enter value and press set" ||
-            props.counter===props.maxValue
-                ? "error" : "counter"}>
+            <InputLabel style={{margin: 100 }}
+                error={isDisabled}
+                        margin={'dense'}
+            >
 
                 {(props.error === "incorrect value" ||
                     props.error === "enter value and press set")
                     ? props.error : props.counter}
-            </Box>
+            </InputLabel >
             <Box className="buttons-block">
                 <Button style={{margin: "10px"}}
                     variant='contained'

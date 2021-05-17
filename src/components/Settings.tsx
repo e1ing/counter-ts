@@ -17,19 +17,19 @@ export type SettingsType = {
 
 export const Settings = (props: SettingsType) => {
 
-let errorMax:boolean = (props.maxValue >= props.minValue) || (props.maxValue<0)|| (props.maxValue === props.minValue);
+let errorMax:boolean = (props.maxValue <= props.minValue) || (props.maxValue<0)|| (props.maxValue === props.minValue);
 let errorMin:boolean = (props.minValue<0)|| (props.maxValue === props.minValue);
     return (
 <Box>
         <Box>
-            <Box> max value </Box>
+            <Box style={{margin: 20 }}> max value </Box>
             <InputElement
                 value={props.maxValue}
                 changeValue={props.setMaxValue}
                 error={errorMax}
 
             />
-            <Box> start value </Box>
+            <Box style={{margin: 20 }}> start value </Box>
             <InputElement
                 value={props.minValue}
                 changeValue={props.setMinValue}
@@ -37,7 +37,7 @@ let errorMin:boolean = (props.minValue<0)|| (props.maxValue === props.minValue);
             />
         </Box>
         <Box>
-            <Button  style={{margin: "10px", justifyContent: 'center'}}
+            <Button  style={{margin: "70px", justifyContent: 'center'}}
                 startIcon={<Save/>}
                 size={"large"}
                 variant='contained'

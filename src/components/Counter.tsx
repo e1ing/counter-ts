@@ -72,12 +72,12 @@ export function Counter() {
     return (
         <Container fixed>
 
-            <Grid container spacing={3} style={{padding: "30px 0px"}}
+            <Grid container  spacing={3} style={{padding: "30px 0px"}}
                   direction="row"
                   justify="center"
                   alignItems="center">
 
-                <Paper style={{height:60 , width: 50}}>
+                <Paper >
                     <Settings
                         minValue={minValue}
                         maxValue={maxValue}

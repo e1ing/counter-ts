@@ -32,7 +32,7 @@ export const Settings = (props: SettingsType) => (
             />
         </Box>
         <Box>
-            <Button
+            <Button  style={{margin: "10px", justifyContent: 'center'}}
                 startIcon={<Save/>}
                 size={"large"}
                 variant='contained'

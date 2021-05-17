@@ -13,7 +13,6 @@ export function InputElement({value, changeValue, ...restProps}: InputElementTyp
     }
 
     return <Input  type="number"
-
                   value={value}
                   color={'primary'}
                   onChange={onValueChangeHandler} {...restProps}

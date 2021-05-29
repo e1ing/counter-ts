@@ -2,7 +2,7 @@
   "name": "counter-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://e1ing.github.io/repository-name",
+  "homepage": "https://e1ing.github.io/counter-ts",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -14,6 +14,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "fontsource-roboto": "^4.0.0",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",

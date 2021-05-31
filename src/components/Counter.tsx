@@ -9,7 +9,7 @@ export function Counter() {
     const [maxValue, setMaxValue] = useState<number>(0)
     const [countValue, setCountValue] = useState<any>(0)
     let [error, setError] = useState<string>("")
-    let [errorState, setErrorState] = useState<boolean>(false)
+
 
     const increaseValue = () => setCountValue(countValue + 1);
 
@@ -22,32 +22,15 @@ export function Counter() {
 
     const setMinValueCallback = (val: number) => {
         setMinValue(val)
-        errorCase()
+
     }
     const setMaxValueCallback = (val: number) => {
         setMaxValue(val)
-        errorCase()
     }
 
-    const errorCase = () => {
-        if (maxValue === minValue) {
-            setError("incorrect value");
-            setErrorState(true)
-        } else if (minValue < 0) {
-            setError("incorrect value");
-            setErrorState(true)
-        } else if (maxValue < 0) {
-            setError("incorrect value");
-            setErrorState(true)
-        } else if (maxValue < minValue) {
-            setError("incorrect value");
-            setErrorState(true)
-        } else {
-            setError("enter value and press set")
-            setErrorState(false)
-        }
-    }
-
+    let errorMax:boolean = (maxValue <= minValue) || (maxValue<0)|| (maxValue === minValue);
+    let errorMin:boolean = (minValue<0)|| (maxValue === minValue);
+    let errorMaxMin:boolean = errorMax||errorMin;
 
     useEffect(() => {
         let maxAsString = localStorage.getItem('maxKey')
@@ -65,7 +48,7 @@ export function Counter() {
     useEffect(() => {
         localStorage.setItem('maxKey', JSON.stringify(maxValue))
         localStorage.setItem('minKey', JSON.stringify(minValue))
-        errorCase()
+
     }, [maxValue, minValue])
 
 
@@ -83,7 +66,10 @@ export function Counter() {
                         setMinValue={setMinValueCallback}
                         setMaxValue={setMaxValueCallback}
                         setDisplayValue={setDisplayValue}
-                        errorState={errorState}/>
+                        errorMax={errorMax}
+                        errorMin={errorMin}
+                        errorMaxMin={errorMaxMin}
+                    />
                 </Paper>
 
                     <Paper style={{margin: 20 }}   elevation={3}>
@@ -92,10 +78,8 @@ export function Counter() {
                             resetValue={resetValue}
                             counter={countValue}
                             maxValue={maxValue}
-                            minValue={minValue}
-                            errorCase={errorCase}
                             error={error}
-                            errorState={errorState}/>
+                            />
                     </Paper>
             </Grid>
 

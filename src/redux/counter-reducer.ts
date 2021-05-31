@@ -14,5 +14,17 @@ const initialState: any = {
 }
 
 export const counterReducer = (state: any, action: any) =>{
+switch (action.type) {
+    case A:
+        return
 
+
+    case B:
+        return
+
+    case C:
+        return
+
+    default: return state;
 }
+};

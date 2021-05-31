@@ -4,8 +4,15 @@ export enum ACTIONS_TYPE {
     RESET_COUNTER_VALUE = 'RESET_COUNTER_VALUE',
 }
 
-export const increaseCounterValue = (): any => {
-    return {
-        type:
-    }
+export const setCounterValue = (): any => {
+    return {}
 }
+
+export const increaseCounterValue = (): any => {
+    return {}
+};
+
+export const resetCounterValue = (): any => {
+    return {}
+};
+

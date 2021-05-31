@@ -7,9 +7,9 @@ import {Provider} from "react-redux";
 
 function App() {
     return (
-<Provider>
+
             <Counter/>
-</Provider>
+
            );
 }
 

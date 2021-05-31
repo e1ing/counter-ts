@@ -7,10 +7,8 @@ export type DisplayCounterType = {
     resetValue: () => void
     counter: number | string
     maxValue: number
-    minValue: number
-    errorCase: () => void
     error: string
-    errorState: boolean
+
 }
 
 export function DisplayCounter(props: DisplayCounterType) {

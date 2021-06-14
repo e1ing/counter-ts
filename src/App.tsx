@@ -1,16 +1,8 @@
 import React from 'react';
 import './App.css';
-import {Counter} from "./components/Counter";
-import {Provider} from "react-redux";
-
-
+import {CounterRedux} from "./components/CounterRedux";
 
 function App() {
-    return (
-
-            <Counter/>
-
-           );
+    return (<CounterRedux/>);
 }
-
 export default App;

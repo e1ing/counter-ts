@@ -59,7 +59,7 @@ export function Counter() {
                   justify="center"
                   alignItems="center">
 
-                <Paper style={{margin: 20 }}  elevation={3} >
+                <Paper style={{margin: 20}}  elevation={3} >
                     <Settings
                         minValue={minValue}
                         maxValue={maxValue}
@@ -72,7 +72,7 @@ export function Counter() {
                     />
                 </Paper>
 
-                    <Paper style={{margin: 20 }}   elevation={3}>
+                    <Paper style={{margin: 20}}   elevation={3}>
                         <DisplayCounter
                             increaseValue={increaseValue}
                             resetValue={resetValue}

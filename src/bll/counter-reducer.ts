@@ -4,12 +4,10 @@ export enum ACTIONS_TYPE {
     RESET_COUNTER_VALUE = 'RESET_COUNTER_VALUE',
     SET_MIN_VALUE = "SET_MIN_VALUE",
     SET_MAX_VALUE = "SET_MAX_VALUE",
-    SET_ERROR_FOR_MAX_MIN = "SET_ERROR",
 }
 
 type SetCounterValueAT = {
     type: ACTIONS_TYPE.SET_COUNTER_VALUE
-    countValue: number
     minValue: number
 }
 
@@ -33,39 +31,23 @@ type SetMaxValueAT = {
     maxValue: number
 }
 
-type SetErrorMaxMinAT = {
-    type: ACTIONS_TYPE.SET_ERROR_FOR_MAX_MIN
-    minValue: number
-    maxValue: number
-    countValue: number | string
-}
-
 type ActionType = SetCounterValueAT | IncreaseCounterValueAT |
-    ResetCounterValueAT | SetMinValueAT | SetMaxValueAT | SetErrorMaxMinAT
+    ResetCounterValueAT | SetMinValueAT | SetMaxValueAT
 
-export type CounterStateType = {
-    countValue: number | string,
-    maxValue: number,
-    minValue: number,
-    error: string,
-    errorMax: boolean,
-    errorMin: boolean,
-}
-
-const initialState: CounterStateType = {
+const initialState = {
     countValue: 0,
     maxValue: 0,
     minValue: 0,
     error: "",
-    errorMax: true,
-    errorMin: true,
 }
 
-export const counterReducer = (state: CounterStateType = initialState, action: ActionType): CounterStateType => {
+export type InitialStateType = typeof initialState;
+
+export const counterReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.SET_COUNTER_VALUE: {
             let copyState = {...state};
-            copyState.minValue = action.minValue;
+            copyState.countValue = action.minValue;
             return copyState;
         }
 
@@ -92,32 +74,14 @@ export const counterReducer = (state: CounterStateType = initialState, action: A
             copyState.maxValue = action.maxValue
             return copyState;
         }
-
-        case ACTIONS_TYPE.SET_ERROR_FOR_MAX_MIN: {
-            let copyState = {...state}
-
-            if ((action.maxValue <= action.minValue) || (action.maxValue < 0) || (action.maxValue === action.minValue)) {
-                copyState.errorMax = !copyState.errorMax;
-                copyState.countValue = "incorrect value"
-            } else {
-                copyState.countValue = "enter value and press set"
-            }
-            if ((action.minValue < 0) || (action.maxValue === action.minValue)) {
-                copyState.errorMin = !copyState.errorMax
-                copyState.countValue = "incorrect value"
-            } else {
-                copyState.countValue = "enter value and press set"
-            }
-            return copyState;
-        }
         default:
             return state;
     }
 };
 
 
-export const setCounterValue = (countValue: number, minValue: number): SetCounterValueAT => {
-    return {type: ACTIONS_TYPE.SET_COUNTER_VALUE, countValue, minValue}
+export const setCounterValue = (minValue: number): SetCounterValueAT => {
+    return {type: ACTIONS_TYPE.SET_COUNTER_VALUE, minValue}
 }
 
 export const increaseCounterValue = (countValue: number): IncreaseCounterValueAT => {
@@ -136,6 +100,3 @@ export const setMaxValue = (maxValue: number): SetMaxValueAT => {
     return {type: ACTIONS_TYPE.SET_MAX_VALUE, maxValue}
 };
 
-export const setErrorMaxMin = (minValue: number, maxValue: number, countValue: number | string): SetErrorMaxMinAT => {
-    return {type: ACTIONS_TYPE.SET_ERROR_FOR_MAX_MIN, minValue, maxValue, countValue}
-};

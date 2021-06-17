@@ -1,25 +1,19 @@
 import React, {useState} from "react";
 import {Box, Button, InputLabel, Paper} from '@material-ui/core';
-import {increaseCounterValue, resetCounterValue} from "../redux/counter-reducer";
+import {increaseCounterValue, resetCounterValue, setCounterValue} from "../bll/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootState} from "../redux/store";
+import {AppRootState} from "../bll/store";
 
 
-export type DisplayCounterType = {
-    increaseValue: () => void
-    resetValue: () => void
-    counter: number | string
-    maxValue: number
-    error: string
-}
-
-export function DisplayCounter(props: DisplayCounterType) {
+export function DisplayCounter() {
+    const maxValue = useSelector<AppRootState, number>(state => state.counter.maxValue)
+    const countValue = useSelector<AppRootState, number>(state => state.counter.countValue)
+    const error = useSelector<AppRootState, string>(state => state.counter.error)
     let dispatch = useDispatch()
-    const countValue = useSelector<AppRootState, number | string>(state => state.counter.counter)
 
-     let isDisabled = props.error === "incorrect value" ||
-     props.error === "enter value and press set" ||
-     props.counter===props.maxValue
+    let isDisabled = error === "incorrect value" ||
+       error === "enter value and press set" ||
+        countValue === maxValue
 
     const increaseCounterValueHandler = (countValue: number) => {
         dispatch(increaseCounterValue(countValue))
@@ -32,29 +26,29 @@ export function DisplayCounter(props: DisplayCounterType) {
     return (
         <Box>
             <InputLabel style={{margin: 100}}
-                error={isDisabled}
+                        error={isDisabled}
                         margin={'dense'}>
 
-                {(props.error === "incorrect value" ||
-                    props.error === "enter value and press set")
+                {(error === "incorrect value" ||
+                    error === "enter value and press set")
 
-                    ? props.error : props.counter}
-            </InputLabel >
-            <Box  display="flex"  justifyContent="center">
+                    ? error : countValue}
+            </InputLabel>
+            <Box display="flex" justifyContent="center">
                 <Button style={{margin: "10px", width: "50%"}}
-                    variant='contained'
+                        variant='contained'
                         size={'large'}
                         color={"primary"}
                         className="button-style"
-                        disabled={props.counter === props.maxValue}
+                        disabled={countValue === maxValue}
                         onClick={() => increaseCounterValueHandler(countValue)}>
                     INC
                 </Button>
-                <Button style={{margin: "10px",  width: "50%"}}
-                    variant='contained'
-                    color={"primary"}
-                    size={'large'}
-                        onClick={resetValueHandler}
+                <Button style={{margin: "10px", width: "50%"}}
+                        variant='contained'
+                        color={"primary"}
+                        size={'large'}
+                        onClick={() => resetValueHandler(countValue)}
                         className="button-style">
                     RESET
                 </Button>
